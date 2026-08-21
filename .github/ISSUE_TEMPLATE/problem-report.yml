@@ -1,0 +1,54 @@
+name: Problem report
+description: Something broke or behaved oddly — tell us what happened.
+title: "[problem] "
+labels: ["problem-report"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Aethermate version
+      description: Shown in Settings → About (e.g. 0.2.1)
+      placeholder: "0.2.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: What area is affected?
+      options:
+        - Voice (wake word / speech / TTS)
+        - Avatar / 3D window
+        - Bot mates / delegation
+        - Screen reading / vision
+        - Tools & connectors (email, browser, MCP)
+        - Skills
+        - Install / update
+        - Performance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log snippet (optional)
+      description: >-
+        Settings → Diagnostics → Copy recent log. Please remove anything
+        private before pasting.
+      render: text
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows 11
+        - Windows 10
+        - Other
+    validations:
+      required: true

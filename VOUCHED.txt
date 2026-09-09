@@ -1,0 +1,6 @@
+# VOUCHED.txt — PACK 57 §S (57-18) allowlist for Aethermate-releases.
+# One GitHub login per line. '#' comments and blank lines are ignored.
+# A PR from a login NOT listed here is labeled `unvouched` and auto-closed with a
+# single human-voice request. A maintainer comment of "looks good" / "lgtm" /
+# "/vouch" on a contributor's thread appends their login here automatically.
+thechadcooke-ship-it

@@ -1,0 +1,131 @@
+# PACK 57 §S (57-18) — public-repo clanker filter for Aethermate-releases.
+#
+# TEMPLATE — do NOT leave this under docs/templates/ in the private repo; copy it
+# to `.github/workflows/clanker-filter.yml` in the PUBLIC `Aethermate-releases`
+# repo (together with vouch_filter.py at the repo root and VOUCHED.txt). The
+# `.workflow.yml` suffix here keeps GitHub from treating the template as a live
+# Action in this repo.
+#
+# Behaviour (mirrors Mario Zechner's + Mitchell Hashimoto's `vouch`):
+#   • PR opened by an account NOT in VOUCHED.txt  -> labeled `unvouched`, closed
+#     with one fixed human-voice comment (vouch_filter.REQUEST_COMMENT).
+#   • PR opened by a vouched account              -> left open.
+#   • Maintainer comments "looks good" / "lgtm" / "/vouch" -> author appended to
+#     VOUCHED.txt (committed) so their future PRs stay open.
+#   • Issue from an unvouched account with obvious agent markers -> `needs-human`
+#     label (never auto-closed — a human triages).
+#
+# Only users with write access can vouch (guarded by author_association).
+name: clanker-filter
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write   # only the vouch job commits VOUCHED.txt
+
+concurrency:
+  group: clanker-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Decide
+        id: decide
+        env:
+          EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          import vouch_filter as V
+          ev = json.load(open(os.environ["EVENT_PATH"], encoding="utf-8"))
+          try:
+              ev["_vouched_txt"] = open("VOUCHED.txt", encoding="utf-8").read()
+          except FileNotFoundError:
+              ev["_vouched_txt"] = ""
+          d = V._event_from(ev)
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write("action=%s\n" % d.get("action", "noop"))
+              fh.write("label=%s\n" % (d.get("label") or ""))
+              fh.write("login=%s\n" % (d.get("login") or ""))
+          # multi-line comment via heredoc delimiter
+          if d.get("comment"):
+              with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+                  fh.write("comment<<__EOC__\n%s\n__EOC__\n" % d["comment"])
+          print("decision:", d)
+          PY
+
+      - name: Close unvouched PR
+        if: steps.decide.outputs.action == 'close'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const n = context.payload.pull_request.number;
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: n, labels: ['unvouched'] });
+            await github.rest.issues.createComment({ ...context.repo, issue_number: n,
+              body: `${{ steps.decide.outputs.comment }}` });
+            await github.rest.pulls.update({ ...context.repo, pull_number: n, state: 'closed' });
+
+      - name: Label agent issue
+        if: steps.decide.outputs.action == 'label'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const n = context.payload.issue.number;
+            await github.rest.issues.addLabels({ ...context.repo, issue_number: n,
+              labels: ['${{ steps.decide.outputs.label }}'] });
+
+  vouch:
+    # only a maintainer comment can vouch; guard on write access
+    if: >
+      github.event_name == 'issue_comment' &&
+      (github.event.comment.author_association == 'OWNER' ||
+       github.event.comment.author_association == 'MEMBER' ||
+       github.event.comment.author_association == 'COLLABORATOR')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Append vouched login
+        env:
+          EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          import vouch_filter as V
+          ev = json.load(open(os.environ["EVENT_PATH"], encoding="utf-8"))
+          ev["_vouched_txt"] = open("VOUCHED.txt", encoding="utf-8").read() if os.path.exists("VOUCHED.txt") else ""
+          d = V._event_from(ev)
+          if d.get("action") != "vouch" or not d.get("login"):
+              raise SystemExit(0)
+          existing = V.load_vouched(ev["_vouched_txt"])
+          if d["login"] in existing:
+              raise SystemExit(0)
+          with open("VOUCHED.txt", "a", encoding="utf-8") as fh:
+              fh.write(d["login"] + "\n")
+          print("vouched:", d["login"])
+          PY
+      - name: Commit VOUCHED.txt
+        run: |
+          if git diff --quiet -- VOUCHED.txt; then exit 0; fi
+          git config user.name  "aethermate-vouch"
+          git config user.email "noreply@anthropic.com"
+          git add VOUCHED.txt
+          git commit -m "vouch: add contributor (57-18)"
+          git push

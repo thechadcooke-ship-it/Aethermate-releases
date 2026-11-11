@@ -1,0 +1,60 @@
+open-models v1
+Copyright 2026 the open-models contributors. Code in this repository is licensed under the Apache License 2.0 (see LICENSE).
+
+This repository contains NO model weights. The model below is made by another company, is licensed to you
+by them, and must be downloaded from their official sources. We did not retrain, fine-tune, modify or re-host
+it. Our contribution is the tuned runtime configuration (vision/) and the benchmarks (benchmarks/).
+
+------------------------------------------------------------------------------------------------
+1. LFM2.5-VL-3B                                  Licence: LFM Open License v1.0
+------------------------------------------------------------------------------------------------
+Maker:   Liquid AI
+Source:  https://huggingface.co/LiquidAI/LFM2.5-VL-3B
+         https://huggingface.co/LiquidAI/LFM2.5-VL-3B-GGUF   (the Q4_K_M file the Modelfile pulls)
+         Licence text: https://www.liquid.ai/lfm-license
+Key terms, quoted verbatim from the LICENSE file in Liquid AI's official Hugging Face repository
+(https://huggingface.co/LiquidAI/LFM2.5-VL-3B/blob/main/LICENSE, fetched 11 Nov 2026). The full file there is the
+only authoritative text; these are excerpts.
+
+  Revenue threshold
+    1. Definitions: "Threshold" shall mean annual revenue of 10 million United States dollars ($10,000,000) or more.
+    5. Commercial Use Limitation.
+    (a) The rights granted under this License for Commercial Use are conditioned upon You or Your Legal Entity
+        not exceeding the Threshold.
+    (b) Any Commercial Use of the Work or a Derivative Work by a Legal Entity that exceeds the Threshold is not
+        licensed under this Agreement.
+    (c) The Threshold shall not apply to a Qualified Non-Profit Organization's use of the Work or a Derivative
+        Work for Non-Commercial or Research Purposes.
+    ("Commercial Use" shall mean any use of the Work for direct or indirect commercial advantage or monetary
+    compensation.)
+
+  Attribution and redistribution (section 4; applies if you pass the Work or a Derivative Work on)
+    You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without
+    modifications, and in Source or Object form, provided that You meet the following conditions:
+    (a) You must give any other recipients of the Work or Derivative Works a copy of this License; and
+    (b) You must cause any modified files to carry prominent notices stating that You changed the files; and
+    (c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent,
+        trademark, and attribution notices from the Source form of the Work, excluding those notices that do
+        not pertain to any part of the Derivative Works; ...
+
+  Trademarks (section 7)
+    This License does not grant permission to use the trade names, trademarks, service marks, or product names
+    of the Licensor, except for the reasonable and customary use in describing the origin of the Work and
+    reproducing the content of the NOTICE file.
+
+  Plain reading (ours, not legal advice): the licence asks you to carry its text and notices if you redistribute
+  the model, and it does not license commercial use by an entity at or above US$10M annual revenue.
+Use here: the Modelfile only references the official GGUF (`FROM hf.co/LiquidAI/LFM2.5-VL-3B-GGUF:Q4_K_M`).
+         Ollama downloads it to YOUR machine, so the licence, including the revenue threshold, applies to you.
+         It is not redistributed in this repository and we changed no weights.
+Courtesy credit (not a licence requirement for this repo, which holds no weights): "LFM2.5-VL-3B (c) Liquid AI, used under the LFM Open License v1.0."
+
+------------------------------------------------------------------------------------------------
+2. Tooling used to run the benchmarks (not distributed here)
+------------------------------------------------------------------------------------------------
+  - Ollama (MIT) and Pillow (HPND), used to run the model and render the synthetic test images.
+  - LFM3-VL-2B (Liquid AI, LFM Open License v1.0) appears only as a cited number from an internal 27 Oct 2026
+    run; it was not re-run here and nothing of it is included.
+
+All benchmark images in this repository were generated from scratch for this release. Merchant, company, app
+and person-like names are fictional.

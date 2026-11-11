@@ -1,0 +1,330 @@
+[
+ {
+  "category": "receipt",
+  "name": "bakery_total",
+  "prompt": "What is the total amount on this receipt?",
+  "gold": [
+   "regex",
+   [
+    "12\\.00"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "bakery_line",
+  "prompt": "How much was the tea?",
+  "gold": [
+   "regex",
+   [
+    "2\\.60"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "garden_merchant_date",
+  "prompt": "What is the merchant name and the date on this receipt?",
+  "gold": [
+   "contains_all",
+   [
+    "delta garden",
+    "2026-09-18"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "fuel_total",
+  "prompt": "What is the total amount on this receipt?",
+  "gold": [
+   "regex",
+   [
+    "45\\.63"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "signs_invoice",
+  "prompt": "What is the invoice number and the amount due?",
+  "gold": [
+   "contains_all",
+   [
+    "inv-88302",
+    "3,475.50"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "sketchpad_title",
+  "prompt": "What application and file name are shown in the title bar? Be exact.",
+  "gold": [
+   "contains_all",
+   [
+    "sketchpad",
+    "logo-draft.svg"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "maildesk_title",
+  "prompt": "What application and which folder are shown in the title bar?",
+  "gold": [
+   "contains_all",
+   [
+    "maildesk",
+    "inbox"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "export_error_dialog",
+  "prompt": "What is the error code in this dialog?",
+  "gold": [
+   "regex",
+   [
+    "E_EXPORT_507"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "toggle_autosave_off",
+  "prompt": "In this settings panel, is 'Autosave' turned ON or OFF?",
+  "gold": [
+   "regex",
+   [
+    "\\boff\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "toggle_sound_on",
+  "prompt": "In this settings panel, is 'Sound effects' turned ON or OFF?",
+  "gold": [
+   "regex",
+   [
+    "\\bon\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "project_members",
+  "prompt": "How many members does this project have? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b9\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "tickets_open",
+  "prompt": "How many open tickets are shown? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b36\\b"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "valueerror",
+  "prompt": "Read the exact error type and message from this terminal.",
+  "gold": [
+   "contains_all",
+   [
+    "valueerror",
+    "invalid literal"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "cargo_e0425",
+  "prompt": "What is the compiler error code shown?",
+  "gold": [
+   "regex",
+   [
+    "E0425"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "docker_port",
+  "prompt": "What error does docker report? Quote it.",
+  "gold": [
+   "contains_all",
+   [
+    "port is already allocated"
+   ]
+  ]
+ },
+ {
+  "category": "chart_read",
+  "name": "zephx_price",
+  "prompt": "What is the ticker symbol, timeframe, and price on this chart?",
+  "gold": [
+   "contains_all",
+   [
+    "zephx",
+    "1d",
+    "54.20"
+   ]
+  ]
+ },
+ {
+  "category": "chart_read",
+  "name": "quill_rsi",
+  "prompt": "What is the RSI value shown on this chart?",
+  "gold": [
+   "regex",
+   [
+    "\\b71\\b"
+   ]
+  ]
+ },
+ {
+  "category": "chart_read",
+  "name": "marln_price",
+  "prompt": "What price is shown on this chart?",
+  "gold": [
+   "regex",
+   [
+    "212\\.90"
+   ]
+  ]
+ },
+ {
+  "category": "small_text",
+  "name": "error_log",
+  "prompt": "What is the ERROR line's status code?",
+  "gold": [
+   "regex",
+   [
+    "\\b503\\b"
+   ]
+  ]
+ },
+ {
+  "category": "grounding",
+  "name": "red_left",
+  "prompt": "There is one red button. Is it on the LEFT or the RIGHT side of the image?",
+  "gold": [
+   "regex",
+   [
+    "\\bleft\\b"
+   ]
+  ]
+ },
+ {
+  "category": "grounding",
+  "name": "red_bottom",
+  "prompt": "There is one red button. Is it in the TOP half or the BOTTOM half?",
+  "gold": [
+   "regex",
+   [
+    "\\b(bottom|lower)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "count",
+  "name": "circles6",
+  "prompt": "How many circles are in this image? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b(6|six)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "count",
+  "name": "squares4",
+  "prompt": "How many squares are in this image? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b(4|four)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "color_layout",
+  "name": "apply_discard",
+  "prompt": "What buttons are shown and roughly what colours are they?",
+  "gold": [
+   "contains_all",
+   [
+    "apply",
+    "discard"
+   ]
+  ]
+ },
+ {
+  "category": "color_layout",
+  "name": "big_number",
+  "prompt": "What number is shown in this image?",
+  "gold": [
+   "regex",
+   [
+    "163"
+   ]
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_ochre",
+  "prompt": "Describe any windows, text, errors, buttons or UI elements. If there are none, reply exactly 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_teal",
+  "prompt": "Describe any windows, text, errors, buttons or UI elements. If there are none, reply exactly 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_silver",
+  "prompt": "Is there anything actionable or notable on this screen? If nothing, say 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "gradient_sunset",
+  "prompt": "Are there any UI elements, text or errors here? If none, reply 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "wallpaper_teal",
+  "prompt": "This looks like a desktop wallpaper. Is there any window, text or actionable UI element? If none, reply 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ }
+]

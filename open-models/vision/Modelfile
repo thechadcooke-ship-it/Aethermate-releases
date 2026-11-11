@@ -1,0 +1,21 @@
+# Tuned runtime config for LFM2.5-VL-3B (screen / receipt reading) on Ollama.
+# Base weights are Liquid AI's, pulled from the official GGUF repo. Nothing is retrained or re-hosted here.
+#
+#   ollama create lfm25-vl-tuned -f Modelfile
+#   ollama run lfm25-vl-tuned "What is the total?" ./receipt.png
+#
+# Also pass "keep_alive": "30m" (or -1) on API calls to keep the model resident; it is a request
+# parameter, not a Modelfile one.
+FROM hf.co/LiquidAI/LFM2.5-VL-3B-GGUF:Q4_K_M
+
+# Low temperature + min_p + a light repeat penalty: Liquid's recommended sampling family, pushed toward
+# exact extraction (terse, literal answers).
+PARAMETER temperature 0.1
+PARAMETER min_p 0.15
+PARAMETER repeat_penalty 1.05
+# Short answers. Raise to ~512 for "transcribe everything on screen" requests.
+PARAMETER num_predict 160
+
+# No "reply nothing notable" escape clause here: small VLMs take that easy exit even on busy screens
+# (see benchmarks/vision). Negative-case handling belongs in the per-request prompt instead.
+SYSTEM """You are a precise screen-reader for a desktop assistant. Extract EXACT text, numbers, and app/file names verbatim. Answer ONLY what is asked, tersely. Do not read back passwords or secret tokens."""

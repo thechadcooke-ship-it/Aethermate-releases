@@ -1,0 +1,224 @@
+{
+ "label": "tuned + nothing-notable clause (ablation)",
+ "model": "lfm25-vl-escape-tmp",
+ "mode": "baked",
+ "max_dim": 2048,
+ "repeat": 3,
+ "n_cases": 28,
+ "passes": 75,
+ "runs": 84,
+ "case_pass_all": 25,
+ "per_category": {
+  "receipt": "12/12",
+  "app_ui": "21/21",
+  "error_read": "3/9",
+  "chart_read": "3/6",
+  "small_text": "3/3",
+  "grounding": "6/6",
+  "count": "6/6",
+  "color_layout": "6/6",
+  "negative": "15/15"
+ },
+ "ttft_ms_p50": 50,
+ "ttft_ms_p95": 142,
+ "tok_per_s_median": 142.5,
+ "mean_output_tokens": 6.2,
+ "rows": [
+  {
+   "category": "receipt",
+   "name": "cafe_total",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "10.89"
+  },
+  {
+   "category": "receipt",
+   "name": "cafe_line",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "2.90"
+  },
+  {
+   "category": "receipt",
+   "name": "hardware_merchant_date",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Harbor Hardware (demo); 2026-07-02"
+  },
+  {
+   "category": "receipt",
+   "name": "invoice_number_amount",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Invoice #: INV-20417; Amount due: $1,284.00"
+  },
+  {
+   "category": "app_ui",
+   "name": "notely_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Notely \u2014 meeting-notes.md"
+  },
+  {
+   "category": "app_ui",
+   "name": "taskboard_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "TaskBoard \u2014 Sprint 14 - Board"
+  },
+  {
+   "category": "app_ui",
+   "name": "sync_error_dialog",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "E_SYNC_409"
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_notifications_off",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "OFF"
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_darkmode_on",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Dark Mode is ON."
+  },
+  {
+   "category": "app_ui",
+   "name": "workspace_seats",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "14"
+  },
+  {
+   "category": "app_ui",
+   "name": "dashboard_refunds",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "7"
+  },
+  {
+   "category": "error_read",
+   "name": "py_traceback",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "TypeError: 'NoneType' object is not subscriptable"
+  },
+  {
+   "category": "error_read",
+   "name": "npm_enoent",
+   "passes": 0,
+   "of": 3,
+   "sample_answer": "npm ERR! code EN0ENT; package.json"
+  },
+  {
+   "category": "error_read",
+   "name": "git_fatal",
+   "passes": 0,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "chart_read",
+   "name": "acmex_price",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "ACMEX, 1H, $128.40"
+  },
+  {
+   "category": "chart_read",
+   "name": "bolt_rsi",
+   "passes": 0,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "small_text",
+   "name": "dense_log",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "WARN retry queue depth = 9"
+  },
+  {
+   "category": "grounding",
+   "name": "red_right",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Right"
+  },
+  {
+   "category": "grounding",
+   "name": "red_top",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "TOP half"
+  },
+  {
+   "category": "count",
+   "name": "circles5",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "5"
+  },
+  {
+   "category": "count",
+   "name": "squares3",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "3"
+  },
+  {
+   "category": "color_layout",
+   "name": "save_cancel",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Save - green; Cancel - red."
+  },
+  {
+   "category": "color_layout",
+   "name": "big_number",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "87"
+  },
+  {
+   "category": "negative",
+   "name": "plain_blue",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_green",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_grey",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "gradient",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "wallpaper",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  }
+ ]
+}

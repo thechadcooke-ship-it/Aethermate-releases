@@ -1,0 +1,310 @@
+[
+ {
+  "category": "receipt",
+  "name": "cafe_total",
+  "prompt": "What is the total amount on this receipt?",
+  "gold": [
+   "regex",
+   [
+    "10\\.89"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "cafe_line",
+  "prompt": "How much was the croissant?",
+  "gold": [
+   "regex",
+   [
+    "2\\.90"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "hardware_merchant_date",
+  "prompt": "What is the merchant name and the date on this receipt?",
+  "gold": [
+   "contains_all",
+   [
+    "harbor",
+    "2026-07-02"
+   ]
+  ]
+ },
+ {
+  "category": "receipt",
+  "name": "invoice_number_amount",
+  "prompt": "What is the invoice number and the amount due?",
+  "gold": [
+   "contains_all",
+   [
+    "inv-20417",
+    "1,284.00"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "notely_title",
+  "prompt": "What application and file name are shown in the title bar? Be exact.",
+  "gold": [
+   "contains_all",
+   [
+    "notely",
+    "meeting-notes.md"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "taskboard_title",
+  "prompt": "What application and which board are shown in the title bar?",
+  "gold": [
+   "contains_all",
+   [
+    "taskboard",
+    "sprint 14"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "sync_error_dialog",
+  "prompt": "What is the error code in this dialog?",
+  "gold": [
+   "regex",
+   [
+    "E_SYNC_409"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "toggle_notifications_off",
+  "prompt": "In this settings panel, is 'Notifications' turned ON or OFF?",
+  "gold": [
+   "regex",
+   [
+    "\\boff\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "toggle_darkmode_on",
+  "prompt": "In this settings panel, is 'Dark Mode' turned ON or OFF?",
+  "gold": [
+   "regex",
+   [
+    "\\bon\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "workspace_seats",
+  "prompt": "How many seats does this workspace have? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b14\\b"
+   ]
+  ]
+ },
+ {
+  "category": "app_ui",
+  "name": "dashboard_refunds",
+  "prompt": "How many refunds are shown? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b7\\b"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "py_traceback",
+  "prompt": "Read the exact error type and message from this terminal.",
+  "gold": [
+   "contains_all",
+   [
+    "typeerror",
+    "nonetype",
+    "subscriptable"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "npm_enoent",
+  "prompt": "What is the npm error code and the missing file?",
+  "gold": [
+   "contains_all",
+   [
+    "enoent",
+    "package.json"
+   ]
+  ]
+ },
+ {
+  "category": "error_read",
+  "name": "git_fatal",
+  "prompt": "What git error is shown? Quote the fatal line.",
+  "gold": [
+   "contains_all",
+   [
+    "upstream"
+   ]
+  ]
+ },
+ {
+  "category": "chart_read",
+  "name": "acmex_price",
+  "prompt": "What is the ticker symbol, timeframe, and price on this chart?",
+  "gold": [
+   "contains_all",
+   [
+    "acmex",
+    "1h",
+    "128.40"
+   ]
+  ]
+ },
+ {
+  "category": "chart_read",
+  "name": "bolt_rsi",
+  "prompt": "What is the RSI value shown on this chart?",
+  "gold": [
+   "regex",
+   [
+    "\\b44\\b"
+   ]
+  ]
+ },
+ {
+  "category": "small_text",
+  "name": "dense_log",
+  "prompt": "What is the WARN message and its numeric value in this log?",
+  "gold": [
+   "regex",
+   [
+    "depth\\D*9|queue.{0,20}\\b9\\b"
+   ]
+  ]
+ },
+ {
+  "category": "grounding",
+  "name": "red_right",
+  "prompt": "There is one red button. Is it on the LEFT or the RIGHT side of the image?",
+  "gold": [
+   "regex",
+   [
+    "\\bright\\b"
+   ]
+  ]
+ },
+ {
+  "category": "grounding",
+  "name": "red_top",
+  "prompt": "There is one red button. Is it in the TOP half or the BOTTOM half?",
+  "gold": [
+   "regex",
+   [
+    "\\b(top|upper)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "count",
+  "name": "circles5",
+  "prompt": "How many circles are in this image? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b(5|five)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "count",
+  "name": "squares3",
+  "prompt": "How many squares are in this image? Answer with the number.",
+  "gold": [
+   "regex",
+   [
+    "\\b(3|three)\\b"
+   ]
+  ]
+ },
+ {
+  "category": "color_layout",
+  "name": "save_cancel",
+  "prompt": "What buttons are shown and roughly what colours are they?",
+  "gold": [
+   "contains_all",
+   [
+    "save",
+    "cancel"
+   ]
+  ]
+ },
+ {
+  "category": "color_layout",
+  "name": "big_number",
+  "prompt": "What number is shown in this image?",
+  "gold": [
+   "regex",
+   [
+    "87"
+   ]
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_blue",
+  "prompt": "Describe any windows, text, errors, buttons or UI elements. If there are none, reply exactly 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_green",
+  "prompt": "Describe any windows, text, errors, buttons or UI elements. If there are none, reply exactly 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "plain_grey",
+  "prompt": "Is there anything actionable or notable on this screen? If nothing, say 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "gradient",
+  "prompt": "Are there any UI elements, text or errors here? If none, reply 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ },
+ {
+  "category": "negative",
+  "name": "wallpaper",
+  "prompt": "This looks like a desktop wallpaper. Is there any window, text or actionable UI element? If none, reply 'nothing notable'.",
+  "gold": [
+   "expect_null",
+   []
+  ]
+ }
+]

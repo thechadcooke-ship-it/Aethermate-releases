@@ -1,0 +1,238 @@
+{
+ "label": "tuned (Modelfile, held-out)",
+ "model": "lfm25-vl-tuned-tmp",
+ "mode": "baked",
+ "max_dim": 2048,
+ "repeat": 3,
+ "n_cases": 30,
+ "passes": 90,
+ "runs": 90,
+ "case_pass_all": 30,
+ "per_category": {
+  "receipt": "15/15",
+  "app_ui": "21/21",
+  "error_read": "9/9",
+  "chart_read": "9/9",
+  "small_text": "3/3",
+  "grounding": "6/6",
+  "count": "6/6",
+  "color_layout": "6/6",
+  "negative": "15/15"
+ },
+ "ttft_ms_p50": 57,
+ "ttft_ms_p95": 160,
+ "tok_per_s_median": 141.2,
+ "mean_output_tokens": 6.5,
+ "rows": [
+  {
+   "category": "receipt",
+   "name": "bakery_total",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "12.00"
+  },
+  {
+   "category": "receipt",
+   "name": "bakery_line",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "2.60"
+  },
+  {
+   "category": "receipt",
+   "name": "garden_merchant_date",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Merchant: Delta Garden Supply (demo)\nDate: 2026-09-18"
+  },
+  {
+   "category": "receipt",
+   "name": "fuel_total",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "45.63"
+  },
+  {
+   "category": "receipt",
+   "name": "signs_invoice",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Invoice #: INV-88302\nAmount due: $3,475.50"
+  },
+  {
+   "category": "app_ui",
+   "name": "sketchpad_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Sketchpad \u2014 logo-draft.svg"
+  },
+  {
+   "category": "app_ui",
+   "name": "maildesk_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "MailDesk \u2014 Inbox (12)"
+  },
+  {
+   "category": "app_ui",
+   "name": "export_error_dialog",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "E_EXPORT_507"
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_autosave_off",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Autosave is OFF."
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_sound_on",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "ON"
+  },
+  {
+   "category": "app_ui",
+   "name": "project_members",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "9"
+  },
+  {
+   "category": "app_ui",
+   "name": "tickets_open",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "36"
+  },
+  {
+   "category": "error_read",
+   "name": "valueerror",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "ValueError: invalid literal for int() with base 10: 'abc'"
+  },
+  {
+   "category": "error_read",
+   "name": "cargo_e0425",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "E0425"
+  },
+  {
+   "category": "error_read",
+   "name": "docker_port",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "docker: Error response from daemon: port is already allocated."
+  },
+  {
+   "category": "chart_read",
+   "name": "zephx_price",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Ticker: ZEPHX\nTimeframe: 1D\nPrice: $54.20"
+  },
+  {
+   "category": "chart_read",
+   "name": "quill_rsi",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "71"
+  },
+  {
+   "category": "chart_read",
+   "name": "marln_price",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "$212.90"
+  },
+  {
+   "category": "small_text",
+   "name": "error_log",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "503"
+  },
+  {
+   "category": "grounding",
+   "name": "red_left",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Left"
+  },
+  {
+   "category": "grounding",
+   "name": "red_bottom",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "BOTTOM"
+  },
+  {
+   "category": "count",
+   "name": "circles6",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "6"
+  },
+  {
+   "category": "count",
+   "name": "squares4",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "4"
+  },
+  {
+   "category": "color_layout",
+   "name": "apply_discard",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "Apply - blue; Discard - orange."
+  },
+  {
+   "category": "color_layout",
+   "name": "big_number",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "163"
+  },
+  {
+   "category": "negative",
+   "name": "plain_ochre",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_teal",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_silver",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "gradient_sunset",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "wallpaper_teal",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  }
+ ]
+}

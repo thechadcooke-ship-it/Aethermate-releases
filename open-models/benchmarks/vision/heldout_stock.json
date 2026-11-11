@@ -1,0 +1,238 @@
+{
+ "label": "stock Ollama defaults (held-out)",
+ "model": "hf.co/LiquidAI/LFM2.5-VL-3B-GGUF:Q4_K_M",
+ "mode": "stock",
+ "max_dim": 2048,
+ "repeat": 3,
+ "n_cases": 30,
+ "passes": 85,
+ "runs": 90,
+ "case_pass_all": 28,
+ "per_category": {
+  "receipt": "12/15",
+  "app_ui": "21/21",
+  "error_read": "9/9",
+  "chart_read": "7/9",
+  "small_text": "3/3",
+  "grounding": "6/6",
+  "count": "6/6",
+  "color_layout": "6/6",
+  "negative": "15/15"
+ },
+ "ttft_ms_p50": 41,
+ "ttft_ms_p95": 144,
+ "tok_per_s_median": 126.4,
+ "mean_output_tokens": 20.1,
+ "rows": [
+  {
+   "category": "receipt",
+   "name": "bakery_total",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The total amount on this receipt is $12.00."
+  },
+  {
+   "category": "receipt",
+   "name": "bakery_line",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The tea cost $2.60."
+  },
+  {
+   "category": "receipt",
+   "name": "garden_merchant_date",
+   "passes": 0,
+   "of": 3,
+   "sample_answer": "The merchant name is Delta Garden Supply (demo) and the date is September 18, 2026."
+  },
+  {
+   "category": "receipt",
+   "name": "fuel_total",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The total amount on this receipt from Orchard Fuel & Go is $45.63."
+  },
+  {
+   "category": "receipt",
+   "name": "signs_invoice",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The invoice number is INV-88302, and the amount due is $3,475.50."
+  },
+  {
+   "category": "app_ui",
+   "name": "sketchpad_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The title bar of the application shown in the image displays:\n\n**Sketchpad \u2014 logo-draft.svg**\n\nThis corresponds exactly to the text shown in the title bar of the interface."
+  },
+  {
+   "category": "app_ui",
+   "name": "maildesk_title",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The application shown in the title bar is MailDesk, and it is open in the Inbox."
+  },
+  {
+   "category": "app_ui",
+   "name": "export_error_dialog",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The error code shown in the dialog is E_EXPORT_507. This code indicates that the export failed due to the cloud storage quota being exceeded."
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_autosave_off",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "In the settings panel shown in the image, the 'Autosave' toggle is turned OFF."
+  },
+  {
+   "category": "app_ui",
+   "name": "toggle_sound_on",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "In the settings panel shown, the 'Sound effects' option is turned ON. This can be seen by the green color of the toggle switch and the white circle on the right side, indicating that the feature is ac"
+  },
+  {
+   "category": "app_ui",
+   "name": "project_members",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "9"
+  },
+  {
+   "category": "app_ui",
+   "name": "tickets_open",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "36"
+  },
+  {
+   "category": "error_read",
+   "name": "valueerror",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "ValueError: invalid literal for int() with base 10: 'abc'"
+  },
+  {
+   "category": "error_read",
+   "name": "cargo_e0425",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The compiler error code shown is \"E0425\"."
+  },
+  {
+   "category": "error_read",
+   "name": "docker_port",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "docker: Error response from daemon: port is already allocated."
+  },
+  {
+   "category": "chart_read",
+   "name": "zephx_price",
+   "passes": 1,
+   "of": 3,
+   "sample_answer": "The ticker symbol is ZEPHX, the timeframe is 1 day, and the price is $54.20."
+  },
+  {
+   "category": "chart_read",
+   "name": "quill_rsi",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The RSI (Relative Strength Index) value shown on the chart is 71. This reading indicates that the momentum of the Quill stock is relatively strong, suggesting it may be in an uptrend. A typical interp"
+  },
+  {
+   "category": "chart_read",
+   "name": "marln_price",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The chart shows two prices:\n\n1. **Marlin 1W (1-week)**: The price is $212.90. This is indicated at the top left corner of the chart.\n\n2. **RSI 55**: The RSI (Relative Strength Index) value is 55. This"
+  },
+  {
+   "category": "small_text",
+   "name": "error_log",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The status code for the ERROR line is 503. This indicates a service unavailability or a problem with the web server that is responding to client requests."
+  },
+  {
+   "category": "grounding",
+   "name": "red_left",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The red button labeled \"DELETE\" is positioned on the left side of the image. It stands out prominently among the other four grey buttons, which are arranged in a 2x2 grid pattern. The red color of the"
+  },
+  {
+   "category": "grounding",
+   "name": "red_bottom",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "The red button labeled \"DELETE\" is in the **BOTTOM half** of the screen. It is positioned at the center of the lower portion of the interface."
+  },
+  {
+   "category": "count",
+   "name": "circles6",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "6"
+  },
+  {
+   "category": "count",
+   "name": "squares4",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "4"
+  },
+  {
+   "category": "color_layout",
+   "name": "apply_discard",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "I can see two buttons in the image. The first button is blue with white text that says \"Apply\". The second button is orange with white text that says \"Discard\". Both buttons have a simple rectangular "
+  },
+  {
+   "category": "color_layout",
+   "name": "big_number",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "163"
+  },
+  {
+   "category": "negative",
+   "name": "plain_ochre",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_teal",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "plain_silver",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "gradient_sunset",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  },
+  {
+   "category": "negative",
+   "name": "wallpaper_teal",
+   "passes": 3,
+   "of": 3,
+   "sample_answer": "nothing notable"
+  }
+ ]
+}

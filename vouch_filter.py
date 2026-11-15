@@ -1,19 +1,11 @@
-"""vouch_filter.py — PACK 57 §S (57-18) public-repo clanker filter logic.
+"""vouch_filter.py — public-repo filter logic for Aethermate-releases.
 
-TEMPLATE ARTIFACT for the PUBLIC `Aethermate-releases` repo — it is intentionally
-NOT a live module in this (private) repo: wiring a vouch auto-close Action here
-would close Chad's own (and this agent's) PRs. Copy this file + the workflow +
-VOUCHED.txt into `Aethermate-releases` (see README.md) to arm it there.
+PRs from accounts that are not in VOUCHED.txt are labelled and closed with one fixed message; a maintainer
+vouches an account with an exact `/vouch` comment. Issues from unvouched accounts with obvious agent markers are
+labelled `needs-human` (never auto-closed).
 
-Mirrors Mario Zechner's + Mitchell Hashimoto's `vouch`: drive-by AI-agent
-("clanker") PRs from unknown accounts are auto-closed with ONE fixed human-voice
-request (no bot boilerplate, one screen); a maintainer's "looks good" adds the
-account to VOUCHED.txt; issues from obvious agent traffic get a `needs-human`
-label for a human to triage rather than being closed.
-
-Pure stdlib, no network — the workflow feeds it the event JSON on stdin and reads
-VOUCHED.txt from the checkout, so the SAME logic is unit-tested in the Aethermate
-repo (tests/test_vouch_filter.py) and run unchanged in the Action."""
+Pure stdlib, no network: the workflow feeds it the event JSON and reads VOUCHED.txt from the checkout.
+"""
 from __future__ import annotations
 
 import json
@@ -31,9 +23,10 @@ REQUEST_COMMENT = (
     "conversation I'll vouch for your account and your PRs will stay open.\n"
 )
 
-# A maintainer comment containing any of these (case-insensitive) vouches the
-# PR author — the Action then appends their login to VOUCHED.txt.
-VOUCH_PHRASES = ("looks good", "lgtm", "/vouch", "vouched")
+# A maintainer comment that is exactly `/vouch` (one line, case-insensitive) vouches the
+# PR author — the Action then appends their login to VOUCHED.txt. Casual phrases such as
+# "looks good" no longer vouch (a polite review comment must not grant standing access).
+VOUCH_COMMAND = "/vouch"
 
 # Heuristic markers of drive-by agent traffic on ISSUES (labeled, never closed).
 _AGENT_MARKERS = (
@@ -67,7 +60,7 @@ def is_vouched(login: str, vouched: Iterable[str]) -> bool:
 def comment_vouches(body: str) -> bool:
     """True if a maintainer comment body contains a vouch phrase."""
     b = str(body or "").lower()
-    return any(p in b for p in VOUCH_PHRASES)
+    return b.strip() == VOUCH_COMMAND
 
 
 def looks_like_agent(*texts: str) -> bool:

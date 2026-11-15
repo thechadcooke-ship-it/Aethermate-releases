@@ -8,12 +8,12 @@ a stamped record.
 
 This is the **public release channel** for the app:
 
-- **Downloads** — grab the latest installer from
-  [Releases](https://github.com/thechadcooke-ship-it/Aethermate-releases/releases).
+- **Downloads** — the first release is coming; there are no installers yet. Watch
+  [Releases](https://github.com/thechadcooke-ship-it/Aethermate-releases/releases) and the changelog.
 - **Changelog** — see [CHANGELOG.md](CHANGELOG.md).
 - **Problems / bug reports** — open an
   [issue](https://github.com/thechadcooke-ship-it/Aethermate-releases/issues/new/choose).
-  Reports here feed the support pipeline directly.
+  Reports here go straight to the maintainer.
 
 - **Open models**: local-first building blocks we use in Aethermate, with honest
   benchmarks, in [`open-models/`](open-models/). The first release is a tuned runtime for

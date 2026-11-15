@@ -1,19 +1,9 @@
-# PACK 57 §S (57-18) — public-repo clanker filter for Aethermate-releases.
+# Public-repo contributor filter for Aethermate-releases (uses vouch_filter.py and VOUCHED.txt at the repo root).
 #
-# TEMPLATE — do NOT leave this under docs/templates/ in the private repo; copy it
-# to `.github/workflows/clanker-filter.yml` in the PUBLIC `Aethermate-releases`
-# repo (together with vouch_filter.py at the repo root and VOUCHED.txt). The
-# `.workflow.yml` suffix here keeps GitHub from treating the template as a live
-# Action in this repo.
-#
-# Behaviour (mirrors Mario Zechner's + Mitchell Hashimoto's `vouch`):
-#   • PR opened by an account NOT in VOUCHED.txt  -> labeled `unvouched`, closed
-#     with one fixed human-voice comment (vouch_filter.REQUEST_COMMENT).
-#   • PR opened by a vouched account              -> left open.
-#   • Maintainer comments "looks good" / "lgtm" / "/vouch" -> author appended to
-#     VOUCHED.txt (committed) so their future PRs stay open.
-#   • Issue from an unvouched account with obvious agent markers -> `needs-human`
-#     label (never auto-closed — a human triages).
+#   - PR opened by an account NOT in VOUCHED.txt  -> labeled `unvouched`, closed with one fixed comment.
+#   - PR opened by a vouched account              -> left open.
+#   - Maintainer comment that is exactly `/vouch` -> author appended to VOUCHED.txt (committed).
+#   - Issue from an unvouched account with obvious agent markers -> `needs-human` label (never auto-closed).
 #
 # Only users with write access can vouch (guarded by author_association).
 name: clanker-filter
@@ -26,10 +16,9 @@ on:
   issue_comment:
     types: [created]
 
+# Least privilege: jobs ask for what they need; only the vouch job may write contents.
 permissions:
-  issues: write
-  pull-requests: write
-  contents: write   # only the vouch job commits VOUCHED.txt
+  contents: read
 
 concurrency:
   group: clanker-${{ github.event.issue.number || github.event.pull_request.number }}
@@ -38,9 +27,13 @@ concurrency:
 jobs:
   filter:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.11"
 
@@ -71,7 +64,7 @@ jobs:
 
       - name: Close unvouched PR
         if: steps.decide.outputs.action == 'close'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const n = context.payload.pull_request.number;
@@ -82,7 +75,7 @@ jobs:
 
       - name: Label agent issue
         if: steps.decide.outputs.action == 'label'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         with:
           script: |
             const n = context.payload.issue.number;
@@ -97,9 +90,12 @@ jobs:
        github.event.comment.author_association == 'MEMBER' ||
        github.event.comment.author_association == 'COLLABORATOR')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # commits VOUCHED.txt
+      issues: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.11"
       - name: Append vouched login
@@ -125,7 +121,7 @@ jobs:
         run: |
           if git diff --quiet -- VOUCHED.txt; then exit 0; fi
           git config user.name  "aethermate-vouch"
-          git config user.email "noreply@anthropic.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add VOUCHED.txt
-          git commit -m "vouch: add contributor (57-18)"
+          git commit -m "vouch: add contributor"
           git push
